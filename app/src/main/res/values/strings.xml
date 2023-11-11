@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LocDVD</string>
+    <string name="anyo_de_aparicion">"Año de aparición : %d"</string>
+
+    <string name="titulo_de_la_pelicula">"Título de la película"</string>
+    <string name="anyo_de_aparicion_etiqueta">"Año de aparición"</string>
+    <string name="actores">"Actores"</string>
+    <string name="resumen">"Resumen"</string>
+</resources>
