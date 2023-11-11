@@ -43,13 +43,14 @@
                 android:text="@string/actores"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
+
             <Button
                 android:id="@+id/addDVD_addActor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/addDVD_addActorLayout"
