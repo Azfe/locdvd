@@ -189,8 +189,4 @@ public class DVD {
         db.delete("DVD", whereClause,whereArgs);
         db.close();
     }
-
-
-
-
 }
