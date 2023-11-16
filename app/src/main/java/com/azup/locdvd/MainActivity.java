@@ -3,25 +3,56 @@ package com.azup.locdvd;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        list = (ListView)findViewById(R.id.main_List);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int
+                    position, long id) {
+                startViewDVDActivity(id);
+            }
+        });
+
         SharedPreferences sharedPreferences =
                 getSharedPreferences("com.azup.locDVD.prefs", Context.MODE_PRIVATE);
         if(!sharedPreferences.getBoolean("embeddedDataInserted", false))
             readEmbeddedData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ArrayList<DVD> dvdList = DVD.getDVDList(this);
+        DVDAdapter dvdAdapter = new DVDAdapter(this, dvdList);
+        list.setAdapter(dvdAdapter);
+    }
+
+    private void startViewDVDActivity(long dvdId) {
+        Intent intent = new Intent(this, ViewDVDActivity.class);
+        intent.putExtra("dvdId",dvdId);
+        startActivity(intent);
     }
 
     /**
